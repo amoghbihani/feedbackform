@@ -84,7 +84,98 @@
 </head>
 <body>
   <script type="text/javascript">
+    var mQuestions = [
+      "1) Description of the course objectives and assignments:",
+      "2) Communication of ideas and information:",
+      "3) Expression of expectation for performance:",
+      "4) Availability to assist students in or out of the class:",
+      "5) Respect and concern for students:",
+      "6) Stimulation of interest in course:",
+      "7) Fascilitation of learning:",
+      "8) Enthusiasm for the subject:",
+      "9) Encouraged students to think independently, creatively and critically:",
+      "10) Overall rating of the instructor:",
+    ];
     var mUserName;
+
+    function createQuestions() {
+      for (var i = 0; i < mQuestions.length; ++i) {
+        var feedbackQuestion = document.createElement("div");
+        feedbackQuestion.className = "feedback-question";
+
+        var question = document.createElement("div");
+        question.className = "question";
+        question.innerHTML = mQuestions[i];
+        feedbackQuestion.appendChild(question);
+
+        var options = document.createElement("div");
+        options.className = "options";
+
+        var label1 = document.createElement("label");
+        var input1 = document.createElement("input");
+        input1.type = "radio";
+        input1.name = "rating" + i;
+        input1.id = "qa" + i;
+        input1.value = "poor";
+        label1.appendChild(input1);
+        label1.appendChild(document.createTextNode(" Poor"));
+        label1.appendChild(document.createElement("br"));
+        options.appendChild(label1);
+
+        var label2 = document.createElement("label");
+        var input2 = document.createElement("input");
+        input2.type = "radio";
+        input2.name = "rating" + i;
+        input2.id = "qb" + i;
+        input2.value = "fair";
+        label2.appendChild(input2);
+        label2.appendChild(document.createTextNode(" Fair"));
+        label2.appendChild(document.createElement("br"));
+        options.appendChild(label2);
+
+        var label3 = document.createElement("label");
+        var input3 = document.createElement("input");
+        input3.type = "radio";
+        input3.name = "rating" + i;
+        input3.id = "qc" + i;
+        input3.value = "good";
+        input3.checked = "true";
+        label3.appendChild(input3);
+        label3.appendChild(document.createTextNode(" Good"));
+        label3.appendChild(document.createElement("br"));
+        options.appendChild(label3);
+
+        var label4 = document.createElement("label");
+        var input4 = document.createElement("input");
+        input4.type = "radio";
+        input4.name = "rating" + i;
+        input4.id = "qd" + i;
+        input4.value = "very-good";
+        label4.appendChild(input4);
+        label4.appendChild(document.createTextNode(" Very Good"));
+        label4.appendChild(document.createElement("br"));
+        options.appendChild(label4);
+
+        var label5 = document.createElement("label");
+        var input5 = document.createElement("input");
+        input5.type = "radio";
+        input5.name = "rating" + i;
+        input5.id = "qe" + i;
+        input5.value = "excellent";
+        label5.appendChild(input5);
+        label5.appendChild(document.createTextNode(" Excellent"));
+        label5.appendChild(document.createElement("br"));
+        options.appendChild(label5);
+
+        feedbackQuestion.appendChild(options);
+        document.getElementById("questions-block").appendChild(feedbackQuestion);
+      }
+
+      var submitButton = document.createElement("button");
+      submitButton.innerHTML = "Submit";
+      submitButton.addEventListener("click", submit);
+      document.getElementById("questions-block").appendChild(submitButton);
+    }
 
     function login() {
       mUserName = document.getElementById("user-name").value;
@@ -92,6 +183,7 @@
       document.getElementById("welcome-user").innerHTML = "Welcome! " + mUserName;
       document.getElementById("login-form").style = "display:none";
       document.getElementById("questions-block").style = "";
+      createQuestions();
     }
 
     function submit() {
@@ -121,139 +213,7 @@
     <button onclick="login()">Login</button>
   </div>
   <div id="questions-block" style="display:none">
-    <div class="feedback-question">
-      <div class="question">
-        1) Description of the course objectives and assignments:
-      </div>
-      <div class="options">
-        <input type="radio" id="q1a" name="rating1" value="poor"> Poor<br/>
-        <input type="radio" id="q1b" name="rating1" value="fair"> Fair<br/>
-        <input type="radio" id="q1c" name="rating1" value="good" checked> Good<br/>
-        <input type="radio" id="q1d" name="rating1" value="very-good"> Very Good<br/>
-        <input type="radio" id="q1e" name="rating1" value="excellent"> Excellent
-      </div>
-      <hr/>
-    </div>
-    <div class="feedback-question">
-      <div class="question">
-        2) Communication of ideas and information:
-      </div>
-      <div class="options">
-        <input type="radio" name="rating2" value="poor"> Poor<br/>
-        <input type="radio" name="rating2" value="fair"> Fair<br/>
-        <input type="radio" name="rating2" value="good" checked> Good<br/>
-        <input type="radio" name="rating2" value="very-good"> Very Good<br/>
-        <input type="radio" name="rating2" value="excellent"> Excellent
-      </div>
-      <hr/>
-    </div>
-    <div class="feedback-question">
-      <div class="question">
-        3) Expression of expectation for performance:
-      </div>
-      <div class="options">
-        <input type="radio" name="rating3" value="poor"> Poor<br/>
-        <input type="radio" name="rating3" value="fair"> Fair<br/>
-        <input type="radio" name="rating3" value="good" checked> Good<br/>
-        <input type="radio" name="rating3" value="very-good"> Very Good<br/>
-        <input type="radio" name="rating3" value="excellent"> Excellent
-      </div>
-      <hr/>
-    </div>
-    <div class="feedback-question">
-      <div class="question">
-        4) Availability to assist students in or out of the class:
-      </div>
-      <div class="options">
-        <input type="radio" name="rating4" value="poor"> Poor<br/>
-        <input type="radio" name="rating4" value="fair"> Fair<br/>
-        <input type="radio" name="rating4" value="good" checked> Good<br/>
-        <input type="radio" name="rating4" value="very-good"> Very Good<br/>
-        <input type="radio" name="rating4" value="excellent"> Excellent
-      </div>
-      <hr/>
-    </div>
-    <div class="feedback-question">
-      <div class="question">
-        5) Respect and concern for students:
-      </div>
-      <div class="options">
-        <input type="radio" name="rating5" value="poor"> Poor<br/>
-        <input type="radio" name="rating5" value="fair"> Fair<br/>
-        <input type="radio" name="rating5" value="good" checked> Good<br/>
-        <input type="radio" name="rating5" value="very-good"> Very Good<br/>
-        <input type="radio" name="rating5" value="excellent"> Excellent
-      </div>
-      <hr/>
-    </div>
-    <div class="feedback-question">
-      <div class="question">
-        6) Stimulation of interest in course:
-      </div>
-      <div class="options">
-        <input type="radio" name="rating6" value="poor"> Poor<br/>
-        <input type="radio" name="rating6" value="fair"> Fair<br/>
-        <input type="radio" name="rating6" value="good" checked> Good<br/>
-        <input type="radio" name="rating6" value="very-good"> Very Good<br/>
-        <input type="radio" name="rating6" value="excellent"> Excellent
-      </div>
-      <hr/>
-    </div>
-    <div class="feedback-question">
-      <div class="question">
-        7) Fascilitation of learning:
-      </div>
-      <div class="options">
-        <input type="radio" name="rating7" value="poor"> Poor<br/>
-        <input type="radio" name="rating7" value="fair"> Fair<br/>
-        <input type="radio" name="rating7" value="good" checked> Good<br/>
-        <input type="radio" name="rating7" value="very-good"> Very Good<br/>
-        <input type="radio" name="rating7" value="excellent"> Excellent
-      </div>
-      <hr/>
-    </div>
-    <div class="feedback-question">
-      <div class="question">
-        8) Enthusiasm for the subject:
-      </div>
-      <div class="options">
-        <input type="radio" name="rating8" value="poor"> Poor<br/>
-        <input type="radio" name="rating8" value="fair"> Fair<br/>
-        <input type="radio" name="rating8" value="good" checked> Good<br/>
-        <input type="radio" name="rating8" value="very-good"> Very Good<br/>
-        <input type="radio" name="rating8" value="excellent"> Excellent
-      </div>
-      <hr/>
-    </div>
-    <div class="feedback-question">
-      <div class="question">
-        9) Encouraged students to think independently, creatively and critically:
-      </div>
-      <div class="options">
-        <input type="radio" name="rating9" value="poor"> Poor<br/>
-        <input type="radio" name="rating9" value="fair"> Fair<br/>
-        <input type="radio" name="rating9" value="good" checked> Good<br/>
-        <input type="radio" name="rating9" value="very-good"> Very Good<br/>
-        <input type="radio" name="rating9" value="excellent"> Excellent
-      </div>
-      <hr/>
-    </div>
-    <div class="feedback-question">
-      <div class="question">
-        10) Overall rating of the instructor:
-      </div>
-      <div class="options">
-        <input type="radio" name="rating10" value="poor"> Poor<br/>
-        <input type="radio" name="rating10" value="fair"> Fair<br/>
-        <input type="radio" name="rating10" value="good" checked> Good<br/>
-        <input type="radio" name="rating10" value="very-good"> Very Good<br/>
-        <input type="radio" name="rating10" value="excellent"> Excellent
-      </div>
-      <hr/>
-    </div>
-    <button onclick="submit()">
-      Submit
-    </button>
+    <!-- Populated in JS -->
   </div>
   <div id="last-page" style="display:none">
     <div id="thank-you">Thank you!</div>
