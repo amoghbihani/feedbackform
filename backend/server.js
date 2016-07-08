@@ -1,15 +1,17 @@
 var express = require('express');
 var qs = require('querystring');
-var url = require("url");
 var path = require("path");
-var fs = require("fs");
+
 var server = express();
 
 server.use('/', express.static(path.join(__dirname, "../frontend")));
-
-server.listen(8000, function() {
-    console.log("server started at port 8000");
+server.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
 });
+
+server.listen(8000);
 
 server.get("/data", function (req, res) {
     console.log("get");
