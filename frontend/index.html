@@ -26,16 +26,26 @@
       float: right;
     }
     #login-form {
+      min-width: 300px;
       position: fixed;
       width: 30%;
-      left: 35%;
-      bottom: 150px;
+      left: 32%;
+      bottom: 50px;
       color: #d32f2f;
       border-radius: 2px;
-      padding:10px;
+      padding-top: 20px;
+      padding-left: 40px;
+      padding-right: 40px;
+      box-shadow: 0px 0px 4px #888888;
+      background: #fafafa;
     }
     #login-form button {
       float: right;
+    }
+    #login-form table {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 32px;
     }
     .input-box {
       font-size: 20px;
@@ -43,6 +53,7 @@
       border: none;
       border-bottom: 2px solid #d32f2f;
       margin-bottom: 30px;
+      background: #fafafa;
     }
     .feedback-question {
       margin: 20px;
@@ -202,6 +213,9 @@
     </div>
   </div>
   <div id="login-form">
+    <table><tr><td>
+      <img style="height:100px;" src="res/user2.png">
+    </td></tr></table>
     <div class="input-item">
       <div class="input-title">PGP ID</div>
       <input id="user-name" class="input-box" type="text"><br/>
