@@ -222,7 +222,7 @@
         }
       ];
 
-      httpRequestPost("http://localhost:8000/data", header, body, function() {
+      httpRequestPost("http://localhost:8000/data", header, result, function() {
         document.getElementById("questions-block").style = "display:none";
         document.getElementById("last-page").style = "";
       });
