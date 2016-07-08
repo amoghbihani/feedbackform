@@ -94,6 +94,7 @@
   </style>
 </head>
 <body>
+  <script type="text/javascript" src="scripts/httpRequest.js"></script>
   <script type="text/javascript">
     var mQuestions = [
       "1) Description of the course objectives and assignments:",
@@ -190,7 +191,6 @@
 
     function login() {
       mUserName = document.getElementById("user-name").value;
-      console.log(mUserName);
       document.getElementById("welcome-user").innerHTML = "Welcome! " + mUserName;
       document.getElementById("login-form").style = "display:none";
       document.getElementById("questions-block").style = "";
@@ -198,8 +198,34 @@
     }
 
     function submit() {
-      document.getElementById("questions-block").style = "display:none";
-      document.getElementById("last-page").style = "";
+      result = "id=" + mUserName;
+      for (var i = 0; i < mQuestions.length; ++i) {
+        var value = "";
+        if (document.getElementById("qa" + i).checked) {
+          value = document.getElementById("qa" + i).value;
+        } else if (document.getElementById("qb" + i).checked) {
+          value = document.getElementById("qb" + i).value;
+        } else if (document.getElementById("qc" + i).checked) {
+          value = document.getElementById("qc" + i).value;
+        } else if (document.getElementById("qd" + i).checked) {
+          value = document.getElementById("qd" + i).value;
+        } else if (document.getElementById("qe" + i).checked) {
+          value = document.getElementById("qe" + i).value;
+        }
+        result += "&" + i + "=" + value;
+      }
+      console.log(result);
+      var header = [
+        {
+          type: "Content-type",
+          value: "application/x-www-form-urlencoded",
+        }
+      ];
+
+      httpRequestPost("http://localhost:8000/data", header, body, function() {
+        document.getElementById("questions-block").style = "display:none";
+        document.getElementById("last-page").style = "";
+      });
     }
   </script>
   <div id="header">
