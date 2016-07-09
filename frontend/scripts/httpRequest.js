@@ -41,6 +41,7 @@ function httpRequest(xhr, header, body, callback) {
 
 var mLoadingSpinner;
 function showLoadingSpinner(show) {
+  return; // disabling spinner temporarily.
   if (mLoadingSpinner == undefined) {
     createLoadingSpinner();
   }
