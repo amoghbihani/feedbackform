@@ -81,6 +81,7 @@ function createQuestions() {
 
 function login() {
   mUserName = document.getElementById("user-name").value;
+  document.getElementById("user-image").style = "display:block";
   document.getElementById("welcome-user").innerHTML = "Welcome! " + mUserName;
   document.getElementById("login-form").style = "display:none";
   document.getElementById("questions-block").style = "";

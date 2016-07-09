@@ -13,6 +13,11 @@
 #subtitle {
   font-size: 18px;
 }
+#user-image {
+  float: right;
+  display: none;
+  margin-right: 40px;
+}
 #welcome-user {
   float: right;
 }
