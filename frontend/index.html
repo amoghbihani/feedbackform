@@ -81,6 +81,16 @@
       font-size: 32px;
       margin: 20px;
     }
+    #course-details {
+      margin-top: 10px;
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .td-heading {
+      color: #d32f2f;
+    }
     button {
       font-size: 16px;
       background: #d32f2f;
@@ -241,13 +251,15 @@
     </div>
     <button onclick="login()">Login</button>
   </div>
-  <table><tr>
-    <td>
-    </td>
-    <td>
-    </td>
-  </tr></table>
   <div id="questions-block" style="display:none">
+    <table id="course-details"><tr>
+      <td>
+        <span class="td-heading">Course:</span> <span>PQR101</span>
+      </td>
+      <td>
+        <span class="td-heading">Faculty:</span> <span>Dr. XYZ</span>
+      </td>
+    </tr></table>
     <!-- Populated in JS -->
   </div>
   <div id="last-page" style="display:none">
