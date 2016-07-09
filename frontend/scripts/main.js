@@ -52,7 +52,7 @@ function createQuestions() {
     input4.type = "radio";
     input4.name = "rating" + i;
     input4.id = "qd" + i;
-    input4.value = "very-good";
+    input4.value = "verygood";
     label4.appendChild(input4);
     label4.appendChild(document.createTextNode(" Very Good"));
     label4.appendChild(document.createElement("br"));
@@ -103,7 +103,7 @@ function submit() {
     } else if (document.getElementById("qe" + i).checked) {
       value = document.getElementById("qe" + i).value;
     }
-    result += "&" + i + "=" + value;
+    result += "&q" + i + "=" + value;
   }
   console.log(result);
   var header = [
@@ -113,7 +113,7 @@ function submit() {
     }
   ];
 
-  httpRequestPost(mUrl + "/data", header, result, function() {
+  httpRequestPost(mUrl + "/record", header, result, function() {
     document.getElementById("questions-block").style = "display:none";
     document.getElementById("last-page").style = "";
   });
