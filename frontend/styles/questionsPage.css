@@ -1,0 +1,27 @@
+.feedback-question {
+  margin: 20px;
+}
+.feedback-question hr {
+  width: 20%;
+  left: 40%;
+  color: #d32f2f;
+  display: none;
+}
+.question {
+  color: #d32f2f;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.options {
+  margin-left: 20px;
+}
+#course-details {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+.td-heading {
+  color: #d32f2f;
+}

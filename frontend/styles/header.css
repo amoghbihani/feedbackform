@@ -1,0 +1,18 @@
+#header {
+  padding: 20px;
+  box-shadow: 2px 1px 5px #888888;
+}
+#title {
+  color: #d32f2f;
+  font-size: 40px;
+  font-weight: bold;
+}
+#title img {
+  height: 50px;
+}
+#subtitle {
+  font-size: 18px;
+}
+#welcome-user {
+  float: right;
+}
