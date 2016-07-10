@@ -78,7 +78,6 @@ server.post("/record", function (req, res) {
     });
     req.on('end',  function() {
         var jsonBody = qs.parse(body);
-        console.log(jsonBody);
         createConnection();
         connection.query("SELECT responded FROM Students WHERE pgpid=\"" + jsonBody.id + "\"",
                 function(err, rows, fields) {

@@ -1,0 +1,38 @@
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.yes {
+  background: #388e3c;
+}
+.no {
+  background: #d32f2f;
+}
+#attendance-table {
+  width: 100%;
+}
+#student-list {
+  width: 150px;
+  border-right: 1px solid black;
+}
+#main-table {
+  width: 100%;
+}
+#response-charts {
+  padding-left: 20px;
+}
+.response-table {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+.question {
+  font-size: 20px;
+  color: #388e3c;
+}
+.response-slider {
+  width: 150px;
+  border: 4px solid white;
+}
