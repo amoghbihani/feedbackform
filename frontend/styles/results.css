@@ -36,3 +36,16 @@
   width: 150px;
   border: 4px solid white;
 }
+#course-number {
+  margin: 20px;
+  font-size: 20px;
+}
+#course-number input {
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid #388e3c;
+  width: 120px;
+}
+#course-number button {
+  background: #388e3c;
+}

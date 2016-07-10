@@ -1,4 +1,5 @@
 var mUserName;
+var mCourseNumber = 0;
 
 function createQuestions() {
   for (var i = 0; i < mQuestions.length; ++i) {
@@ -88,11 +89,17 @@ function login() {
 
   document.getElementById("next-button").addEventListener("click", function() {
     // Add logic to select coursee.
-    courseSeleceted(0);
+    for (var i = 0; i < 4; ++i) {
+      if (document.getElementById("course" + i).checked == 1) {
+        mCourseNumber = document.getElementById("course" + i).value;
+        break;
+      }
+    }
+    courseSeleceted();
   });
 }
 
-function courseSeleceted(courseNumber) {
+function courseSeleceted() {
   document.getElementById("select-course-page").style = "display: none";
   document.getElementById("questions-block").style = "display: block";
   createQuestions();
@@ -100,6 +107,7 @@ function courseSeleceted(courseNumber) {
 
 function submit() {
   result = "id=" + mUserName;
+  result += "&courseNumber=" + mCourseNumber;
   for (var i = 0; i < mQuestions.length; ++i) {
     var value = "";
     if (document.getElementById("qa" + i).checked) {
@@ -116,14 +124,8 @@ function submit() {
     result += "&q" + i + "=" + value;
   }
   console.log(result);
-  var header = [
-    {
-      type: "Content-type",
-      value: "application/x-www-form-urlencoded",
-    }
-  ];
 
-  httpRequestPost(mUrl + "/record", header, result, function() {
+  httpRequestPost(mUrl + "/record", mHeader, result, function() {
     document.getElementById("questions-block").style = "display:none";
     document.getElementById("last-page").style = "";
   });

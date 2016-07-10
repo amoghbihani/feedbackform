@@ -4,14 +4,18 @@ var path = require('path');
 var mysql = require('mysql');
 
 var connection;
-function createConnection() {
+function createConnection2(database) {
     connection = mysql.createConnection({
         host: "localhost",
         user: "root",
         password: "amogh",
-        database: "feedbackform"
+        database: database
     });
     connection.connect();
+}
+
+function createConnection() {
+    createConnection2("feedbackform");
 }
 
 var server = express();
@@ -25,50 +29,64 @@ server.use(function(req, res, next) {
 
 server.listen(8000);
 
-server.get("/students", function (req, res) {
-    createConnection();
-    connection.query("SELECT * FROM Students", function(err, rows, fields) {
-        if (err) {
-            console.log("error in query");
-            res.sendStatus(500);
-            return;
-        }
-
-        var studentData = "[";
-        for (var i = 0; i < rows.length; ++i) {
-            studentData += "{\"pgpid\": \"" + rows[i].pgpid + "\", ";
-            studentData += "\"responded\": " + rows[i].responded + "},";
-        }
-        studentData = studentData.substring(0, studentData.length - 1);
-        studentData += "]";
-        res.send(studentData);
+server.post("/students", function (req, res) {
+    var body = "";
+    req.on('data', function(data) {
+        body += data;
     });
-    connection.end();
+    req.on('end',  function() {
+        var jsonBody = qs.parse(body);
+        createConnection2(jsonBody.courseNumber);
+        connection.query("SELECT * FROM Students", function(err, rows, fields) {
+            if (err) {
+                console.log("error in query");
+                res.sendStatus(500);
+                return;
+            }
+
+            var studentData = "[";
+            for (var i = 0; i < rows.length; ++i) {
+                studentData += "{\"pgpid\": \"" + rows[i].pgpid + "\", ";
+                studentData += "\"responded\": " + rows[i].responded + "},";
+            }
+            studentData = studentData.substring(0, studentData.length - 1);
+            studentData += "]";
+            res.send(studentData);
+        });
+        connection.end();
+    });
 });
 
-server.get("/response", function(req, res) {
-    createConnection();
-    connection.query("SELECT * FROM Response", function(err, rows, fields) {
-        if (err) {
-            console.log("error in query");
-            res.sendStatus(500);
-            return;
-        }
-
-        var responseData = "[";
-        for (var i = 0; i < rows.length; ++i) {
-            responseData += "{\"qno\": " + rows[i].qno;
-            responseData += ", \"poor\": " + rows[i].poor;
-            responseData += ", \"fair\": " + rows[i].fair;
-            responseData += ", \"good\": " + rows[i].good;
-            responseData += ", \"verygood\": " + rows[i].verygood;
-            responseData += ", \"excellent\": " + rows[i].excellent + "},";
-        }
-        responseData = responseData.substring(0, responseData.length - 1);
-        responseData += "]";
-        res.send(responseData);
+server.post("/response", function(req, res) {
+    var body = "";
+    req.on('data', function(data) {
+        body += data;
     });
-    connection.end();
+    req.on('end',  function() {
+        var jsonBody = qs.parse(body);
+        createConnection2(jsonBody.courseNumber);
+        connection.query("SELECT * FROM Response", function(err, rows, fields) {
+            if (err) {
+                console.log("error in query");
+                res.sendStatus(500);
+                return;
+            }
+
+            var responseData = "[";
+            for (var i = 0; i < rows.length; ++i) {
+                responseData += "{\"qno\": " + rows[i].qno;
+                responseData += ", \"poor\": " + rows[i].poor;
+                responseData += ", \"fair\": " + rows[i].fair;
+                responseData += ", \"good\": " + rows[i].good;
+                responseData += ", \"verygood\": " + rows[i].verygood;
+                responseData += ", \"excellent\": " + rows[i].excellent + "},";
+            }
+            responseData = responseData.substring(0, responseData.length - 1);
+            responseData += "]";
+            res.send(responseData);
+        });
+        connection.end();
+    });
 });
 
 server.post("/record", function (req, res) {
@@ -78,7 +96,7 @@ server.post("/record", function (req, res) {
     });
     req.on('end',  function() {
         var jsonBody = qs.parse(body);
-        createConnection();
+        createConnection2(jsonBody.courseNumber);
         connection.query("SELECT responded FROM Students WHERE pgpid=\"" + jsonBody.id + "\"",
                 function(err, rows, fields) {
             if (err) {

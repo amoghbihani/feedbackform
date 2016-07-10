@@ -12,3 +12,10 @@ var mQuestions = [
 ];
 
 var mUrl = "http://localhost:8000";
+
+var mHeader = [
+  {
+    type: "Content-type",
+    value: "application/x-www-form-urlencoded",
+  }
+];

@@ -1,10 +1,15 @@
 function load() {
-  getStudentAttendance();
-  getResponses();
+  document.getElementById("course-show-button").addEventListener("click", function() {
+    var courseNumber = document.getElementById("course-number-input").value;
+    document.getElementById("course-number").style = "display: none;";
+    getStudentAttendance(courseNumber);
+    getResponses(courseNumber);
+  });
 }
 
-function getStudentAttendance() {
-  httpRequestGet(mUrl + "/students", "", function(response) {
+function getStudentAttendance(courseNumber) {
+  var req = "courseNumber=" + courseNumber;
+  httpRequestPost(mUrl + "/students", mHeader, req, function(response) {
     var responseArray = JSON.parse(response);
     for (var i = 0; i < responseArray.length; ++i) {
       var tr = document.createElement("tr");
@@ -26,11 +31,13 @@ function getStudentAttendance() {
 
       document.getElementById("attendance-table").appendChild(tr);
     }
+    document.getElementById("main-table").style = "";
   });
 }
 
-function getResponses() {
-  httpRequestGet(mUrl + "/response", "", function(response) {
+function getResponses(courseNumber) {
+  var req = "courseNumber=" + courseNumber;
+  httpRequestPost(mUrl + "/response", mHeader, req, function(response) {
     var responseArray = JSON.parse(response);
     for (var i = 0; i  < responseArray.length; ++i) {
       var poor = responseArray[i].poor;

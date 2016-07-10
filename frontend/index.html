@@ -46,22 +46,22 @@
         <td class="table-heading">Faculty</td>
       </tr>
       <tr>
-        <td><input type="radio" name="course" value="0" checked></td>
+        <td><input type="radio" name="course" id="course0" value="001" checked></td>
         <td>PQR101</td>
         <td>Dr. XYZ</td>
       </tr>
       <tr>
-        <td><input type="radio" name="course" value="1" disabled></td>
-        <td>PQR101</td>
+        <td><input type="radio" name="course" id="course1" value="002"></td>
+        <td>DEF102</td>
         <td>Dr. ABC</td>
       </tr>
       <tr>
-        <td><input type="radio" name="course" value="2" disabled></td>
+        <td><input type="radio" name="course" id="course2" value="003" disabled></td>
         <td>DEF102</td>
         <td>Dr. LMN</td>
       </tr>
       <tr>
-        <td><input type="radio" name="course" value="3" disabled></td>
+        <td><input type="radio" name="course" id="course3" value="004" disabled></td>
         <td>STR204</td>
         <td>Dr. GGG</td>
       </tr>
@@ -69,14 +69,14 @@
     <button style="margin-left: 70%;" id="next-button">Next</button>
   </div>
   <div id="questions-block" style="display:none">
-    <table id="course-details"><tr>
+    <!-- <table id="course-details"><tr>
       <td>
         <span class="td-heading">Course:</span> <span>PQR101</span>
       </td>
       <td>
         <span class="td-heading">Faculty:</span> <span>Dr. XYZ</span>
       </td>
-    </tr></table>
+    </tr></table> -->
     <!-- Populated in JS -->
   </div>
   <div id="last-page" style="display:none">
