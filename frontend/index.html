@@ -7,6 +7,7 @@
   <link href="styles/loginPage.css" rel="stylesheet">
   <link href="styles/questionsPage.css" rel="stylesheet">
   <link href="styles/lastPage.css" rel="stylesheet">
+  <link href="styles/courseSelect.css" rel="stylesheet">
 </head>
 <body>
 <script type="text/javascript" src="scripts/constants.js"></script>
@@ -36,6 +37,36 @@
       <input id="user-password" class="input-box" type="password"><br/>
     </div>
     <button onclick="login()">Login</button>
+  </div>
+  <div id="select-course-page">
+    <table id="course-table">
+      <tr>
+        <td></td>
+        <td class="table-heading">Course</td>
+        <td class="table-heading">Faculty</td>
+      </tr>
+      <tr>
+        <td><input type="radio" name="course" value="0" checked></td>
+        <td>PQR101</td>
+        <td>Dr. XYZ</td>
+      </tr>
+      <tr>
+        <td><input type="radio" name="course" value="1" disabled></td>
+        <td>PQR101</td>
+        <td>Dr. ABC</td>
+      </tr>
+      <tr>
+        <td><input type="radio" name="course" value="2" disabled></td>
+        <td>DEF102</td>
+        <td>Dr. LMN</td>
+      </tr>
+      <tr>
+        <td><input type="radio" name="course" value="3" disabled></td>
+        <td>STR204</td>
+        <td>Dr. GGG</td>
+      </tr>
+    </table>
+    <button style="margin-left: 70%;" id="next-button">Next</button>
   </div>
   <div id="questions-block" style="display:none">
     <table id="course-details"><tr>

@@ -1,0 +1,16 @@
+#course-table {
+  margin-top: 20px;
+  margin-left: 25%;
+  width: 60%;
+  font-size: 20px;
+}
+#course-table td {
+  padding-bottom: 20px;
+}
+.table-heading {
+  font-weight: bold;
+  color: #d32f2f;
+}
+#select-course-page {
+  display: none;
+}

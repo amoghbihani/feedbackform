@@ -84,7 +84,17 @@ function login() {
   document.getElementById("user-image").style = "display:block";
   document.getElementById("welcome-user").innerHTML = "Welcome " + mUserName;
   document.getElementById("login-form").style = "display:none";
-  document.getElementById("questions-block").style = "";
+  document.getElementById("select-course-page").style = "display: block";
+
+  document.getElementById("next-button").addEventListener("click", function() {
+    // Add logic to select coursee.
+    courseSeleceted(0);
+  });
+}
+
+function courseSeleceted(courseNumber) {
+  document.getElementById("select-course-page").style = "display: none";
+  document.getElementById("questions-block").style = "display: block";
   createQuestions();
 }
 
