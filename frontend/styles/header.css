@@ -7,7 +7,15 @@
   font-size: 40px;
   font-weight: bold;
 }
+#result-title {
+  color: #388e3c;
+  font-size: 40px;
+  font-weight: bold;
+}
 #title img {
+  height: 50px;
+}
+#result-title img {
   height: 50px;
 }
 #subtitle {

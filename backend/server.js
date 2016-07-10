@@ -34,11 +34,13 @@ server.get("/students", function (req, res) {
             return;
         }
 
-        var studentData = "{";
+        var studentData = "[";
         for (var i = 0; i < rows.length; ++i) {
-            studentData += rows[i].pgpid + ": " + rows[i].responded + ", ";
+            studentData += "{\"pgpid\": \"" + rows[i].pgpid + "\", ";
+            studentData += "\"responded\": " + rows[i].responded + "},";
         }
-        studentData += "}";
+        studentData = studentData.substring(0, studentData.length - 1);
+        studentData += "]";
         res.send(studentData);
     });
     connection.end();
@@ -55,13 +57,14 @@ server.get("/response", function(req, res) {
 
         var responseData = "[";
         for (var i = 0; i < rows.length; ++i) {
-            responseData += "{qno: " + rows[i].qno;
-            responseData += ", poor: " + rows[i].poor;
-            responseData += ", fair: " + rows[i].fair;
-            responseData += ", good: " + rows[i].good;
-            responseData += ", verygood: " + rows[i].verygood;
-            responseData += ", excellent: " + rows[i].excellent + "},";
+            responseData += "{\"qno\": " + rows[i].qno;
+            responseData += ", \"poor\": " + rows[i].poor;
+            responseData += ", \"fair\": " + rows[i].fair;
+            responseData += ", \"good\": " + rows[i].good;
+            responseData += ", \"verygood\": " + rows[i].verygood;
+            responseData += ", \"excellent\": " + rows[i].excellent + "},";
         }
+        responseData = responseData.substring(0, responseData.length - 1);
         responseData += "]";
         res.send(responseData);
     });

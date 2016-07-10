@@ -1,0 +1,172 @@
+<html>
+<head>
+  <title>Survey Results</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <link href="styles/main.css" rel="stylesheet">
+  <link href="styles/header.css" rel="stylesheet">
+  <style type="text/css">
+    .table-title {
+      font-weight: bold;
+    }
+    .circle {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+    td {
+      /*border: 2px solid black;*/
+    }
+    .yes {
+      background: green;
+    }
+    .no {
+      background: red;
+    }
+    #attendance-table {
+      width: 100%;
+    }
+    #student-list {
+      width: 150px;
+      border-right: 1px solid black;
+    }
+    #response-charts {
+      padding-left: 20px;
+    }
+    #main-table {
+      width: 100%;
+    }
+    .response-table {
+      margin-left: 20px;
+      margin-bottom: 20px;
+    }
+    .question {
+      color: #388e3c;
+    }
+  </style>
+</head>
+<body onload="load()">
+<script type="text/javascript" src="scripts/constants.js"></script>
+  <script type="text/javascript" src="scripts/httpRequest.js"></script>
+  <script type="text/javascript" src="scripts/results-main.js"></script>
+  <script type="text/javascript">
+    function load() {
+      getStudentAttendance();
+      getResponses();
+    }
+
+    function getStudentAttendance() {
+      httpRequestGet(mUrl + "/students", "", function(response) {
+        var responseArray = JSON.parse(response);
+        for (var i = 0; i < responseArray.length; ++i) {
+          var tr = document.createElement("tr");
+          
+          var td2 = document.createElement("td");
+          var div = document.createElement("div");
+          div.innerHTML = " ";
+          if (responseArray[i].responded == 1) {
+            div.className = "circle yes";
+          } else {
+            div.className = "circle no";
+          }
+          td2.appendChild(div);
+          tr.appendChild(td2);
+          
+          var td1 = document.createElement("td");
+          td1.innerHTML = responseArray[i].pgpid;
+          tr.appendChild(td1);
+
+          document.getElementById("attendance-table").appendChild(tr);
+        }
+      });
+    }
+
+    function getResponses() {
+      httpRequestGet(mUrl + "/response", "", function(response) {
+        var responseArray = JSON.parse(response);
+        for (var i = 0; i  < responseArray.length; ++i) {
+          var quesDiv = document.createElement("div");
+          quesDiv.innerHTML = mQuestions[responseArray[i].qno];
+          quesDiv.className = "question";
+          console.log(mQuestions[responseArray[i].qno]);
+          document.getElementById("response-charts").appendChild(quesDiv);
+
+          var table = document.createElement("table");
+          table.className = "response-table";
+          var tr1 = document.createElement("tr");
+          var td11 = document.createElement("td");
+          td11.innerHTML = "Poor";
+          var td12 = document.createElement("td");
+          td12.innerHTML = responseArray[i].poor;
+          tr1.appendChild(td11);
+          tr1.appendChild(td12);
+          table.appendChild(tr1);
+
+          var tr2 = document.createElement("tr");
+          var td21 = document.createElement("td");
+          td21.innerHTML = "Fair";
+          var td22 = document.createElement("td");
+          td22.innerHTML = responseArray[i].fair;
+          tr2.appendChild(td21);
+          tr2.appendChild(td22);
+          table.appendChild(tr2);
+
+          var tr3 = document.createElement("tr");
+          var td31 = document.createElement("td");
+          td31.innerHTML = "Good";
+          var td32 = document.createElement("td");
+          td32.innerHTML = responseArray[i].good;
+          tr3.appendChild(td31);
+          tr3.appendChild(td32);
+          table.appendChild(tr3);
+
+          var tr4 = document.createElement("tr");
+          var td41 = document.createElement("td");
+          td41.innerHTML = "Very Good";
+          var td42 = document.createElement("td");
+          td42.innerHTML = responseArray[i].verygood;
+          tr4.appendChild(td41);
+          tr4.appendChild(td42);
+          table.appendChild(tr4);
+
+          var tr5 = document.createElement("tr");
+          var td51 = document.createElement("td");
+          td51.innerHTML = "Excellent";
+          var td52 = document.createElement("td");
+          td52.innerHTML = responseArray[i].excellent;
+          tr5.appendChild(td51);
+          tr5.appendChild(td52);
+          table.appendChild(tr5);
+
+          document.getElementById("response-charts").appendChild(table);
+        }
+      });
+    }
+  </script>
+  <div id="header">
+    <div id="result-title">
+      Results
+      <img src="res/results.png">
+    </div>
+    <div id="subtitle">
+      Evaluation
+      <div id="welcome-user"></div>
+    </div>
+  </div>
+  <table id="main-table"><tr>
+    <td id="student-list" valign="top">
+      <table id="attendance-table"><tr>
+        <td>
+          <div class="circle"> </div>
+        </td>
+        <td class="table-title">
+          PGPID
+        </td>
+      </tr></table>
+    </td>
+    <td id="response-charts" valign="top">
+    </td>
+  </tr></table>
+</body>
+</html>
